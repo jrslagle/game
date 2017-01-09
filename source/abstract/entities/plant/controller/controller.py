@@ -1,5 +1,4 @@
-from source.abstract.entities.electronic.controller import controller
-
+from source.abstract.entities.inanimate.controller import controller
 
 class Controller(controller.Controller):
     def __init__(self):

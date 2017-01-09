@@ -7,6 +7,6 @@ class View(view.View):
     
     def pretty_print(self, i=0):
         print(("\t"*i)+self.name)
-        for tank in self.tanks:
-            self.tanks[tank].pretty_print(i+1)
+        for tank in self.elemental_storage_tanks:
+            self.elemental_storage_tanks[tank].pretty_print(i+1)
         pass
