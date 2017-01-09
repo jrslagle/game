@@ -6,7 +6,7 @@ class UseState:
     ON  = 1
 
 class Model(model.Model):
-    name            = "Lightbulb"
+    name      = "Lightbulb"
     use_state = UseState.OFF
 
     grid = None
@@ -16,6 +16,7 @@ class Model(model.Model):
     def __init__(self, parent = None):
         model.Model.__init__(self, parent)
         self.radius = 50
+        self.mass = 10
         pass
 
     def discharge(self):

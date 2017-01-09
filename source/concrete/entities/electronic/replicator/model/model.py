@@ -10,6 +10,7 @@ class Model(model.Model):
             self.logistics = logistics
             self.logistics.replicator = self
         self.radius = 50
+        self.mass = 30
         pass
 
     def activate(self):

@@ -6,6 +6,7 @@ class Model(model.Model):
     name        = "Elemental Storage Unit"
     tanks       = dict()
     logistics   = None
+    inherent_mass = 30
 
     def __init__(self, parent = None, logistics = None):
         model.Model.__init__(self, parent)
@@ -22,13 +23,21 @@ class Model(model.Model):
         self.add_tank(elements.Silicon)
         self.add_tank(elements.Calcium)
         self.add_tank(elements.Titanium)
+        self.update_mass()
         pass
 
     def add_tank(self,element):
         self.tanks[element.name] = ElementalStorageTank(self, element, 100)
 
+    def update_mass(self):
+        mass = self.inherent_mass
+        for tank in self.tanks:
+            mass += tank.mass
+        self.mass = mass
+
     def store_element(self, element_name, kg):
         self.tanks[element_name].add_element(kg)
+        self.update_mass()
         pass
 
     def check_storage(self, element_masses):
@@ -45,3 +54,4 @@ class Model(model.Model):
     def take_elements(self, element_masses):
         for element_name in element_masses:
             self.tanks[element_name].remove_kg(element_masses[element_name])
+        self.update_mass()

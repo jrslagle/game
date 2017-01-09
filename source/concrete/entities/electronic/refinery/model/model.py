@@ -10,6 +10,7 @@ class Model(model.Model):
             self.logistics = logistics
             self.logistics.refinery = self
         self.radius = 50
+        self.mass = 50
         pass
 
     def activate(self):

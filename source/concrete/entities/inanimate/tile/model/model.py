@@ -7,6 +7,7 @@ class Model(model.Model):
     def __init__(self, parent = None):
         model.Model.__init__(self, parent)
         self.radius = 50
+        self.mass = 100
         pass
 
     def north(self):
