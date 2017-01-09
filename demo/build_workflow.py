@@ -7,8 +7,9 @@ from source.library.science.geology.rocks import bauxite
 from source.library.science.geology.rocks import ice
 from source.concrete.entities.inanimate.rock import rock
 from source.abstract.location.model import model
+from source.library.science.chemistry.element import elements
 from source.systems.logistics import logistics
-from source.concrete.entities.electronic.elemental_storage_unit import elemental_storage_unit
+#from source.concrete.entities.electronic.elemental_storage_unit import elemental_storage_unit
 from source.concrete.entities.electronic.elemental_storage_tank import elemental_storage_tank
 from source.concrete.entities.electronic.refinery import refinery
 from source.concrete.entities.electronic.replicator import replicator
@@ -34,14 +35,46 @@ class BuildWorkflow(model.Model):
     def add_logistics(self):
         self.logistics = logistics.Logistics(self)
 
-        elemental_storage_unit0 = elemental_storage_unit.ElementalStorageUnit(self, self.logistics)
-        self.add_entity(elemental_storage_unit0)
+        #elemental_storage_unit0 = elemental_storage_unit.ElementalStorageUnit(self, self.logistics)
+        #self.add_entity(elemental_storage_unit0)
         
         refinery0 = refinery.Refinery(self, self.logistics)
         self.add_entity(refinery0)
         
         replicator0 = replicator.Replicator(self, self.logistics)
         self.add_entity(replicator0)
+        
+        aluminum_tank = elemental_storage_tank.ElementalStorageTank(self, elements.Aluminum, 100)
+        self.logistics.add_tank(aluminum_tank)
+        self.add_entity(aluminum_tank)
+        
+        carbon_tank = elemental_storage_tank.ElementalStorageTank(self, elements.Carbon, 100)
+        self.logistics.add_tank(carbon_tank)
+        self.add_entity(carbon_tank)
+        
+        hydrogen_tank = elemental_storage_tank.ElementalStorageTank(self, elements.Hydrogen, 100)
+        self.logistics.add_tank(hydrogen_tank)
+        self.add_entity(hydrogen_tank)
+        
+        iron_tank = elemental_storage_tank.ElementalStorageTank(self, elements.Iron, 100)
+        self.logistics.add_tank(iron_tank)
+        self.add_entity(iron_tank)
+        
+        oxygen_tank = elemental_storage_tank.ElementalStorageTank(self, elements.Oxygen, 100)
+        self.logistics.add_tank(oxygen_tank)
+        self.add_entity(oxygen_tank)
+        
+        silicon_tank = elemental_storage_tank.ElementalStorageTank(self, elements.Silicon, 100)
+        self.logistics.add_tank(silicon_tank)
+        self.add_entity(silicon_tank)
+        
+        calcium_tank = elemental_storage_tank.ElementalStorageTank(self, elements.Calcium, 100)
+        self.logistics.add_tank(calcium_tank)
+        self.add_entity(calcium_tank)
+        
+        titanium_tank = elemental_storage_tank.ElementalStorageTank(self, elements.Titanium, 100)
+        self.logistics.add_tank(titanium_tank)
+        self.add_entity(titanium_tank)
         pass
 
     def print_composition_of_minerals(self):
@@ -56,7 +89,7 @@ class BuildWorkflow(model.Model):
                 self.logistics.refinery.refine_object(entity)
 
     def print_the_status_of_the_elemental_storage_unit(self):
-        self.logistics.elemental_storage_unit.pretty_print()
+        self.logistics.pretty_print()
 
     def replicate_a_widget(self):
         widget0 = self.logistics.replicator.build_widget()

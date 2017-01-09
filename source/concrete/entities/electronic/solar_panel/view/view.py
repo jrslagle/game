@@ -1,4 +1,4 @@
-from source.abstract.entities.inanimate.view import view
+from source.abstract.entities.electronic.view import view
 from source.library.action import action
 
 from animation_config import stand

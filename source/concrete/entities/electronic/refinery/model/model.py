@@ -1,4 +1,4 @@
-from source.abstract.entities.inanimate.model import model
+from source.abstract.entities.electronic.model import model
 
 class Model(model.Model):
     name        = "Refinery"
@@ -10,6 +10,7 @@ class Model(model.Model):
             self.logistics = logistics
             self.logistics.refinery = self
         self.radius = 50
+        self.mass = 50
         pass
 
     def activate(self):
@@ -20,6 +21,6 @@ class Model(model.Model):
     def refine_object(self, entity):
         element_masses = entity.get_element_masses()
         for element_name in element_masses.keys():
-            self.logistics.elemental_storage_unit.store_element(element_name, element_masses[element_name])
+            self.logistics.store_element(element_name, element_masses[element_name])
         self.parent.remove_entity(entity)
         pass

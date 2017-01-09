@@ -1,5 +1,4 @@
-from source.abstract.entities.inanimate.model import model
-
+from source.abstract.entities.electronic.model import model
 from datetime import datetime
 
 class Model(model.Model):
@@ -13,6 +12,7 @@ class Model(model.Model):
         model.Model.__init__(self, parent)
         self.charge_time = datetime.now()
         self.radius = 50
+        self.mass = 30
         pass
 
     def delta_charge(self):

@@ -1,6 +1,6 @@
 from source.library.action import action
 
-from source.abstract.entities.inanimate.view import view
+from source.abstract.entities.electronic.view import view
 
 from animation_config import stand
 

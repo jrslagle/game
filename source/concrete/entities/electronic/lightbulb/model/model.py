@@ -1,11 +1,12 @@
-from source.abstract.entities.inanimate.model import model
+from source.abstract.entities.electronic.model import model
+
 
 class UseState:
     OFF = 0
     ON  = 1
 
 class Model(model.Model):
-    name            = "Lightbulb"
+    name      = "Lightbulb"
     use_state = UseState.OFF
 
     grid = None
@@ -15,6 +16,7 @@ class Model(model.Model):
     def __init__(self, parent = None):
         model.Model.__init__(self, parent)
         self.radius = 50
+        self.mass = 10
         pass
 
     def discharge(self):

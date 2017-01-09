@@ -10,7 +10,7 @@ class Model(model.Model, sphere.Sphere):
     name            = "Entity"
     direction       = 0
     move_state      = MoveState.STAND
-    mass            = 1 # in kg
+    mass            = 0 # in kg
     material        = None
     element_masses  = None
     collisions      = []

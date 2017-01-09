@@ -1,4 +1,5 @@
-from source.abstract.entities.inanimate.model import model
+from source.abstract.entities.electronic.model import model
+
 
 class CapacityState:
     PERCENT_000 = 0
@@ -11,6 +12,7 @@ class CapacityState:
 class Model(model.Model):
     name            = "Elemental Storage Tank"
     element         = None
+    empty_mass      = 10
     stored          = 0 # in kg
     capacity        = 0 # in kg
     capacity_state  = CapacityState.PERCENT_000
@@ -20,6 +22,8 @@ class Model(model.Model):
         self.element = element
         self.capacity = capacity
         self.radius = 16
+        self.empty_mass = self.capacity*0.02
+        self.mass = self.empty_mass
         pass
 
     def add_element(self, kg):
@@ -36,6 +40,7 @@ class Model(model.Model):
             # 0.7 kg of oxygen has been stored.
             print("\033[92m"+str(kg)+" kg of "+self.element.name+" has been stored.\033[0m")
             self.stored += kg
+        self.mass = self.stored + self.empty_mass
         pass
 
     def remove_kg(self, kg):

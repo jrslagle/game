@@ -1,4 +1,4 @@
-from source.abstract.entities.inanimate.model import model
+from source.abstract.entities.electronic.model import model
 
 class Model(model.Model):
     name        = "Replicator"
@@ -10,6 +10,7 @@ class Model(model.Model):
             self.logistics = logistics
             self.logistics.replicator = self
         self.radius = 50
+        self.mass = 30
         pass
 
     def activate(self):
@@ -23,9 +24,9 @@ class Model(model.Model):
         # TODO: widget = solarPanel
 
         element_requirements = widget.get_element_masses()
-        if self.logistics.elemental_storage_unit.check_storage(element_requirements):
+        if self.logistics.check_storage(element_requirements):
             print("\033[94m"+"Building Widget"+"\033[0m")
-            self.logistics.elemental_storage_unit.take_elements(element_requirements)
+            self.logistics.take_elements(element_requirements)
             widget.position.x = self.position.x
             widget.position.y = self.position.y
             if self.parent is not None:
