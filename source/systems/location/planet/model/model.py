@@ -9,12 +9,13 @@ class Model(model.Model):
     avatar          = None
     camera          = None
     homestead       = None
+    gravity         = 1
     #instructions    = None
 
     size            = 1
     kilometers    = [[None]]
 
-    def __init__(self, parent = None):
+    def __init__(self, parent = None, gravity = 1):
         model.Model.__init__(self, parent)
         self.populate_kilometers()
 
@@ -27,6 +28,7 @@ class Model(model.Model):
         #self.instructions = instructions.Instructions(window)
         self.camera = camera.CAMERA
         self.camera.set_target(self.avatar)
+        self.gravity = 3.711  # Mar's gravity in m/s^2
         pass
 
     def populate_kilometers(self):

@@ -21,15 +21,25 @@ class Model(model.Model, sphere.Sphere):
         self.collisions = []
         self.radius = 1
         self.position = pygame.math.Vector3(0, 0, 0)
+        self.velocity = pygame.math.Vector3(0, 0, 0)
         pass
 
     def translate(self):
         sphere.Sphere.translate(self)
-        self.position += self.speed()
-        pass
+        tile = self.get_tile()
 
-    def speed(self):
-        return pygame.math.Vector3(0,0,0)
+        # if off the ground, apply gravity
+        if self.position.z > tile.position.z:
+            self.velocity.z -= self.get_planet().gravity
+
+        self.position += self.velocity
+
+        # corrections if you've fallen below the floor
+        if self.position.z < tile.position.z:
+            self.position.z = tile.position.z
+            self.velocity.z = tile.velocity.z
+
+        pass
 
     def stand(self):
         self.move_state = MoveState.STAND
