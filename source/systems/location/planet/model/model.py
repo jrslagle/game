@@ -15,7 +15,7 @@ class Model(model.Model):
     size            = 1
     kilometers    = [[None]]
 
-    def __init__(self, parent = None, gravity = 1):
+    def __init__(self, parent = None):
         model.Model.__init__(self, parent)
         self.populate_kilometers()
 

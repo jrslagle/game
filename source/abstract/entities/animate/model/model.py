@@ -36,7 +36,6 @@ class Model(model.Model):
         pass
     
     def speed(self):
-        model.Model.speed(self)
         run_modifier = 0
         if(self.move_state == MoveState.RUN):
             run_modifier = self.run_speed
