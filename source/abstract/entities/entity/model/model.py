@@ -101,22 +101,13 @@ class Model(model.Model, sphere.Sphere):
         return self.parent.get_planet()
 
     def get_kilometer(self):
-        kilo = self.get_planet().kilometers[0][0]
-        x = int(math.floor(self.position.x / 10000))
-        y = int(math.floor(self.position.y / 10000))
-        return kilo
+        return self.parent.get_kilometer()
 
     def get_hectare(self):
-        hect = self.get_kilometer().hectares[0][0]
-        x = int(math.floor(self.position.x / 1000))
-        y = int(math.floor(self.position.y / 1000))
-        return hect
+        return parent.get_hectare()
 
     def get_tile(self):
-        x = int(math.floor(self.position.x / 100))
-        y = int(math.floor(self.position.y / 100))
-        tile = self.get_hectare().get_tile(x, y)
-        return tile
+        return self.parent.get_tile()
 
     def get_mass(self):
         return self.mass

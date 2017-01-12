@@ -10,6 +10,17 @@ class Model(model.Model):
         self.mass = 100
         pass
 
+    def mine_ore(self):
+        if self.mined == False:
+            from source.concrete.entities.inanimate.rock import rock
+            from source.library.science.geology.rocks import bauxite
+            ore = rock.Rock(None, 100, bauxite.Bauxite())
+            self.mined = True
+            return ore
+        else:
+            return None
+        return None
+
     def north(self):
         pass
 
@@ -22,13 +33,5 @@ class Model(model.Model):
     def west(self):
         pass
 
-    def mine_ore(self):
-        if self.mined == False:
-            from source.concrete.entities.inanimate.rock import rock
-            from source.library.science.geology.rocks import bauxite
-            ore = rock.Rock(None, 100, bauxite.Bauxite())
-            self.mined = True
-            return ore
-        else:
-            return None
-        return None
+    def get_tile(self, position = None):
+        return self

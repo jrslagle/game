@@ -1,7 +1,7 @@
 import pygame
 
 class Joystick:
-    subscribers     = []
+    subscribers = []
     joystick    = None
     name        = None
 
@@ -17,7 +17,6 @@ class Joystick:
             self.joystick = pygame.joystick.Joystick(i)
             self.joystick.init()
             self.name = self.joystick.get_name()
-        print(self.name)
 
     def joystick_event(self, event):
         if event.type == pygame.JOYBUTTONDOWN:

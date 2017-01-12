@@ -1,9 +1,13 @@
+from pygame import math
+
 class Model:
     parent      = None
+    postition   = None
     entities    = []
 
     def __init__(self, parent = None):
         self.parent = parent
+        self.position = math.Vector3(0, 0, 0)
         pass
 
     def add_entity(self, object):

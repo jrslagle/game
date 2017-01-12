@@ -55,7 +55,6 @@ class Model(model.Model):
 
     def add_logistics(self):
         self.logistics = logistics.Logistics(self)
-        
         refinery0 = refinery.Refinery(self, self.logistics)
         refinery0.position.x = 50
         refinery0.position.y = 350
@@ -156,3 +155,7 @@ class Model(model.Model):
         rock0.position.y = 250
         self.add_entity(rock0)
         pass
+
+    def get_planet(self):
+        print self.parent
+        return self.parent.get_planet()

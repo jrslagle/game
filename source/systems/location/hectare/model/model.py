@@ -40,7 +40,7 @@ class Model(model.Model):
                 self.__tiles[x][y] = tile.Tile(self)
                 self.__tiles[x][y].position.x = (x * self.__tiles[x][y].dimensions.x)
                 self.__tiles[x][y].position.y = (y * self.__tiles[x][y].dimensions.y)
-            return self.__tiles[x][y]
+            return self.__tiles[x][y].get_tile()
         return None
     
     def populate_tiles(self):

@@ -28,11 +28,23 @@ class Model(model.Model):
     def west(self):
         pass
 
-    def get_hectare(self, x, y):
-        return self.hectares(x, y)
+    def get_hectare(self, position):
+        pos = position / 10
+        return self.hectares(
+            int(math.floor(pos.x)),
+            int(math.floor(pos.y))
+        )
 
     def get_kilometer(self):
         return self
 
     def get_planet(self):
-        return self.parent
+        return self.parent.get_planet()
+
+    def get_tile(self, position):
+        pos = position / 100
+        tile = self.get_hectare().get_tile(
+            int(math.floor(pos.x)),
+            int(math.floor(pos.y))
+        )
+        return tile

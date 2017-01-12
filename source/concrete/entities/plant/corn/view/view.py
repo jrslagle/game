@@ -1,8 +1,6 @@
 from source.abstract.entities.plant.view import view
 from source.library.action import action
 
-from source.abstract.entities.plant.model.model import HealthState, GrowthState
-
 from animation_config import healthy_seed, healthy_sprout, healthy_sapling, healthy_mature, healthy_ripe
 from animation_config import damaged_seed, damaged_sprout, damaged_sapling, damaged_mature, damaged_ripe
 
