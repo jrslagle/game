@@ -157,5 +157,4 @@ class Model(model.Model):
         pass
 
     def get_planet(self):
-        print self.parent
         return self.parent.get_planet()

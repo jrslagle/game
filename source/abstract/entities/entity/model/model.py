@@ -45,14 +45,14 @@ class Model(model.Model, sphere.Sphere):
     def update_free_fall(self):
         tile = self.get_tile()
 
-        above_floor = self.position.z > self.get_tile().position.z
+        above_floor = self.position.z > tile.position.z
         # held = is held
         self.free_fall = above_floor # or held
 
         below_floor = self.position.z <= tile.position.z
         if below_floor:
             self.position.z = tile.position.z
-            self.velocity.z = tile.velocity.z
+            self.velocity.z = 0  # if the tile were moving, it would be an object
             self.free_fall = False
 
         # TODO: add code for interrupting free fall and resetting object velocities when colliding with an object
@@ -101,13 +101,13 @@ class Model(model.Model, sphere.Sphere):
         return self.parent.get_planet()
 
     def get_kilometer(self):
-        return self.parent.get_kilometer()
+        return self.get_planet().get_kilometer()
 
     def get_hectare(self):
-        return parent.get_hectare()
+        return self.get_planet().get_hectare()
 
     def get_tile(self):
-        return self.parent.get_tile()
+        return self.get_planet().get_tile()
 
     def get_mass(self):
         return self.mass

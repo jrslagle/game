@@ -8,6 +8,7 @@ class Model(model.Model):
     avatar          = None
     camera          = None
     homestead       = None
+    gravity         = 1
 
     size            = 1
     gravity         = None
@@ -20,11 +21,10 @@ class Model(model.Model):
         self.homestead = homestead.Homestead(self)
 
         self.avatar = avatar.Avatar(self)
-        #self.avatar.position.x = 300
-        #self.avatar.position.y = 300
 
         self.camera = camera.CAMERA
         self.camera.set_target(self.avatar)
+        self.gravity = 3.711  # Mar's gravity in m/s^2
         pass
 
     def populate_kilometers(self):
