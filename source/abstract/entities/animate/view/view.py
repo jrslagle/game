@@ -13,7 +13,7 @@ class View(view.View):
 
     def set_animation(self):
         view.View.set_animation(self)
-        s= abs(self.speed().length())
+        s= abs(self.get_velocity().length())
         if s > 0 and s <= 4:
             if self.animation == None or self.animation.action != "walk":
                 self.animation = action.Action(walk.data)

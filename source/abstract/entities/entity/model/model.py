@@ -10,6 +10,8 @@ class Model(model.Model, sphere.Sphere):
     name            = "Entity"
     direction       = 0
     move_state      = MoveState.STAND
+    velocity        = None
+    free_fall       = False
     mass            = 0 # in kg
     material        = None
     element_masses  = None
@@ -21,15 +23,39 @@ class Model(model.Model, sphere.Sphere):
         self.collisions = []
         self.radius = 1
         self.position = pygame.math.Vector3(0, 0, 0)
+        self.velocity = pygame.math.Vector3(0, 0, 0)
         pass
 
     def translate(self):
         sphere.Sphere.translate(self)
-        self.position += self.speed()
+        self.position += self.new_velocity()
+        if self.free_fall: self.update_free_fall()
         pass
 
-    def speed(self):
-        return pygame.math.Vector3(0,0,0)
+    def new_velocity(self):
+        if self.free_fall: self.apply_gravity()
+        return self.velocity
+
+    def get_velocity(self):
+        return self.velocity
+
+    def apply_gravity(self):
+        self.velocity.z -= self.get_planet().get_gravity()
+
+    def update_free_fall(self):
+        tile = self.get_tile()
+
+        above_floor = self.position.z > self.get_tile().position.z
+        # held = is held
+        self.free_fall = above_floor # or held
+
+        below_floor = self.position.z <= tile.position.z
+        if below_floor:
+            self.position.z = tile.position.z
+            self.velocity.z = tile.velocity.z
+            self.free_fall = False
+
+        # TODO: add code for interrupting free fall and resetting object velocities when colliding with an object
 
     def stand(self):
         self.move_state = MoveState.STAND
@@ -41,6 +67,7 @@ class Model(model.Model, sphere.Sphere):
             self.position.y,
             self.position.z
         )
+        self.update_free_fall()
         pass
 
     def get_collisions(self):
@@ -71,7 +98,7 @@ class Model(model.Model, sphere.Sphere):
         pass
 
     def get_planet(self):
-        return self.parent
+        return self.parent.get_planet()
 
     def get_kilometer(self):
         kilo = self.get_planet().kilometers[0][0]

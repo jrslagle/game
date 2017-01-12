@@ -12,6 +12,7 @@ class Model(model.Model):
     #instructions    = None
 
     size            = 1
+    gravity         = None
     kilometers    = [[None]]
 
     def __init__(self, parent = None):
@@ -32,3 +33,9 @@ class Model(model.Model):
     def populate_kilometers(self):
         self.kilometers = [[kilometer.Kilometer(self) for x in range(self.size)] for y in range(self.size)]
         pass
+
+    def get_gravity(self):
+        if self.gravity is None:
+            # TODO: calculate gravity from radius and mass of planet.
+            self.gravity = 3.711  # m/s^2 for Mars
+        return self.gravity

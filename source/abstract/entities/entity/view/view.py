@@ -22,7 +22,7 @@ class View:
         return self.render_offset
 
     def set_animation(self):
-        if abs(self.speed().length()) == 0:
+        if abs(self.get_velocity().length()) == 0:
             if self.animation == None or self.animation.action != "stand":
                 self.animation = action.Action(stand.data)
 

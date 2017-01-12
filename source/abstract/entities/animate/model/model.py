@@ -35,8 +35,8 @@ class Model(model.Model):
             self.direction = global_variables.WEST
         pass
     
-    def speed(self):
-        model.Model.speed(self)
+    def new_velocity(self):
+        model.Model.new_velocity(self)
         run_modifier = 0
         if(self.move_state == MoveState.RUN):
             run_modifier = self.run_speed
