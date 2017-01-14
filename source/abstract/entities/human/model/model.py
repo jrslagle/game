@@ -69,7 +69,12 @@ class Model(model.Model):
         return False
 
     def mine(self):
-        ore = self.get_tile().mine_ore()
+        # TODO: .get_tile() in Entity model doesn't work.
+        # ore = self.get_tile().mine_ore()
+
+        from source.concrete.entities.inanimate.tile import tile
+        ore = tile.Tile().mine_ore()
+
         if ore != None:
             ore.parent = self.parent.homestead
             ore.position = self.position
