@@ -43,19 +43,24 @@ class Model(model.Model, sphere.Sphere):
         self.velocity.z -= self.get_planet().get_gravity()
 
     def update_free_fall(self):
-        tile = self.get_tile()
+        # TODO: uncomment tile position lines once we have access to the tile.
+        # tile = self.get_tile()
 
-        above_floor = self.position.z > tile.position.z
+        # above_floor = self.position.z > tile.position.z
+        above_floor = self.position.z > 0
+        # TODO: get access to if entity is being held.
         # held = is held
-        self.free_fall = above_floor # or held
+        self.free_fall = above_floor # and not held
 
-        below_floor = self.position.z <= tile.position.z
+        # TODO: if this entity is tangeable, are there any other tangeables we're in collision with
+        # TODO: and if so, calculate and set the new velocities and positions for each member.
+        # below_floor = self.position.z <= tile.position.z
+        below_floor = self.position.z <= 0 # even if position.z is 0, entity was still in free fall to get here
         if below_floor:
-            self.position.z = tile.position.z
+            # self.position.z = tile.position.z
+            self.position.z = 0
             self.velocity.z = 0  # if the tile were moving, it would be an object
             self.free_fall = False
-
-        # TODO: add code for interrupting free fall and resetting object velocities when colliding with an object
 
     def stand(self):
         self.move_state = MoveState.STAND
