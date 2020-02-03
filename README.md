@@ -14,9 +14,15 @@ This is an in-development game (think alpha or pre-alpha) where you start with v
   
   
 
-**Installation via Python pip:**
+**Linux Installation via Python pip:**
+"Game" runs on Python 2.7 and the Pygame package.
+Since Linux distributions are often out of date, first make a local up to date version
+of pip in your user files (this avoids conflicts with your official distribution copy).
+Also never use sudo with pip as this throws errors and could change things your package
+manager set up. Start with the console in the directory you want to download Game into.
 ```
-sudo pip install pygame
+pip install --user --upgrade pip
+pip install --user pygame
 git clone https://github.com/Master-Foo/game.git
 cd game
 ```
@@ -25,4 +31,3 @@ cd game
 ```
 python demo.py
 ```
-Note: For Windows, omit "sudo"
